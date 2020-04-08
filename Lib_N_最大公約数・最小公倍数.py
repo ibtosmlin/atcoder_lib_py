@@ -2,6 +2,7 @@
 # 最大公約数gcd
 #####################
 from fractions import gcd
+from math import gcd
 
 # print(gcd(2,6))
 
@@ -9,6 +10,7 @@ from fractions import gcd
 # 最小公倍数lcm
 #####################
 from fractions import gcd
+from math import gcd
 def lcm(a,b):
     G=gcd(a,b) #最大公約数
     L=(a//G)*b #最小公倍数
@@ -19,6 +21,8 @@ def lcm(a,b):
 #####################
 # 複数の最大公約数gcd
 #####################
+from math import gcd
+from math import reduce
 from fractions import gcd
 from functools import reduce
 def Gcd(list):
@@ -32,6 +36,7 @@ def Gcd(list):
 #####################
 # 複数の最小公倍数lcm
 #####################
+from math import gcd
 from fractions import gcd
 def Lcm(list):
     L = 1
