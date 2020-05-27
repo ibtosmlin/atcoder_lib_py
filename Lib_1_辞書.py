@@ -9,3 +9,7 @@ for v in dic.values():
 
 for k, v in dic.items():
     print(k, v)
+
+
+dics = sorted(dic.items(), key=lambda x: x[0])
+dics = sorted(dic.items(), key=lambda x: x[1])

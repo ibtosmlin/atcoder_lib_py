@@ -20,7 +20,8 @@ heappush(hp, (-Nmb(tp),)+tp)
 hist = {tp}
 
 for k in range(K):
-#最上位をpop
+#最上位をpop　 マイナスをかける
+#最小値をpopなにもしないとき
     rec = heappop(hp)
     print(rec[0]*-1)
 # 次の順位を登録する

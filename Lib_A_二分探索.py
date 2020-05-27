@@ -24,7 +24,10 @@ print(ok,ng) # "3,5" が出力される
 ####################
 from bisect import bisect_left, bisect_right
 
-arr = [1,3,5,5,5,6,7]       # 昇順にソートされている必要がある
-l = bisect_left(arr, 5)     # 5が入るべき境目のうち最も左側の境目を返す
-r = bisect_right(arr, 5)    # 5が入るべき境目のうち最も右側の境目を返す
-print(l,r)                  # "2 5" が出力される
+    arr = [1,3,5,5,5,6,7]       # 昇順にソートされている必要がある
+    l = bisect_left(arr, 5)     # 5が入るべき境目のうち最も左側の境目を返す
+    r = bisect_right(arr, 5)    # 5が入るべき境目のうち最も右側の境目を返す
+    ll = bisect_left(arr, 4)     # 4が入るべき境目のうち最も左側の境目を返す
+    rr = bisect_right(arr, 6)    # 6が入るべき境目のうち最も右側の境目を返す
+    print(l,r)                  # "2 5" が出力される
+    print(ll,rr)                  # "2 6" が出力される
