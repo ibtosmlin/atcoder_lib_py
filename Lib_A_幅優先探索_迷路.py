@@ -1,6 +1,27 @@
 #!/usr/bin python3
 # -*- coding: utf-8 -*-
 
+H, W = map(int,input().split())
+sth, stw = 0, 0
+glh, glw = H-1, W-1
+#sth,stw = list(map(int,input().split()))
+#sth, stw = sth-1, stw-1
+#glh, glw = list(map(int,input().split()))
+#glh, glw = glh-1, glw-1
+
+for h in range(H):
+    for w in range(W):
+        if Gmap[h][w]=='s':
+            sth, stw = h, w
+        elif Gmap[h][w]=='g':
+            glh, glw = h, w
+
+INF = -1
+Gmap = [list(input()) for _ in range(H)]
+Dist = [[INF]*W for _ in range(H)]
+direc = {(1,0), (-1,0), (0,1), (0,-1)}
+init_q =[]
+
 from collections import deque
 
 def bfs(init):
@@ -19,25 +40,11 @@ def bfs(init):
             if Gmap[hs][ws]=='.' and Dist[hs][ws]==INF:
                 next_q.append([hs,ws])
                 Dist[hs][ws] = Dist[h][w] + 1
-    return ret = Dist
+    return Dist
 
 def main():
-    H, W = map(int,input().split())
-    sth, stw = 0, 0
-    glh, glw = H-1, W-1
-    #sth,stw = list(map(int,input().split()))
-    #sth, stw = sth-1, stw-1
-    #glh, glw = list(map(int,input().split()))
-    #glh, glw = glh-1, glw-1
-
-    INF = -1
-    Gmap = [list(input()) for _ in range(H)]
-    Dist = [[INF]*W for _ in range(H)]
-    direc = {(1,0), (-1,0), (0,1), (0,-1)}
-    init_q =[None]
-
     #固定
-    init_q.append = [sth, stw]
+    init_q.append([sth, stw])
     #複数
     for sth in range(H):
         for stw in range(W):

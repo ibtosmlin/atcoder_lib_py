@@ -37,7 +37,7 @@ def main():
     init_q =[None]
 
     #固定
-    init_q.append = [sth, stw]
+    init_q.append([sth, stw])
     #複数
     for sth in range(H):
         for stw in range(W):

@@ -1,42 +1,28 @@
-##############################
-# priority que
-##############################
-X,Y,Z,K = map(int,input().split())
-A=list(map(int,input().split()))
-B=list(map(int,input().split()))
-C=list(map(int,input().split()))
-A.sort(reverse=True)
-B.sort(reverse=True)
-C.sort(reverse=True)
+#!/usr/bin python3
+# -*- coding: utf-8 -*-
 
-def Nmb(tp):
-    return A[tp[0]-1]+B[tp[1]-1]+C[tp[2]-1]
+# 優先度付きキュー
+# 優先度とフラグを入れ込んだキューで、優先度が大きいものからポップできる
+# 優先度が小さいものとする場合は、マイナスでキューにプッシュする
+# hp キュー
+# hist フラグの履歴（一度読んだものは再度使わない場合）
 
 from heapq import heapify, heappop, heappush, heappushpop
-hp = []
-heapify(hp)
-tp = (1, 1 , 1)
-heappush(hp, (-Nmb(tp),)+tp)
-hist = {tp}
 
-for k in range(K):
-#最上位をpop　 マイナスをかける
-#最小値をpopなにもしないとき
-    rec = heappop(hp)
-    print(rec[0]*-1)
-# 次の順位を登録する
-# Aを次の配列
-    tp = (rec[1]+1, rec[2], rec[3])
-    if tp[0]<=X and not tp in hist:
-        heappush(hp, (-Nmb(tp),)+tp)
-        hist.add(tp)
-# Bを次の配列
-    tp = (rec[1], rec[2]+1, rec[3])
-    if tp[1]<=Y and not tp in hist:
-        heappush(hp, (-Nmb(tp),)+tp)
-        hist.add(tp)
-# Cを次の配列
-    tp = (rec[1], rec[2], rec[3]+1)
-    if tp[2]<=Z and not tp in hist:
-        heappush(hp, (-Nmb(tp),)+tp)
-        hist.add(tp)
+def main():
+    hp = []
+    heapify(hp)
+    heappush(hp, (1,'a'))
+    hist = {'a'}
+    while len(hp)>0:
+#    for k in range(K):
+        v, tp = heappop(hp)
+        print(v, tp)
+        if tp in hist: continue
+        #次の情報 nv, ntp
+        heappush(hp, (nv,ntp))
+        hist.add(ntp)
+
+
+if __name__ == '__main__':
+    main()

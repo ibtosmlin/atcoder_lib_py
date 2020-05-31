@@ -1,4 +1,5 @@
 dic = {}
+dic = {str(i):i for i in range(10)}
 
 dic = {'key1': 1, 'key2': 2, 'key3': 3}
 for k in dic.keys():

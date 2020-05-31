@@ -1,7 +1,18 @@
+n = 100000
+
+##############################
+# 素数列挙
+##############################
+primes = set(range(3, n+1, 2))|set([2])
+for i in range(3, int(n**0.5+1)):
+    primes.difference_update(range(i*3, n+1, i*2))
+primes = list(primes)
+
+##############################
+# 素因数分解
+##############################
 def factorization(n):
-    primen = []
-    degree = []
-    primend = []
+    primen, degree, primend = [], [], []
     temp = n
     for i in range(2, int(-(-n**0.5//1))+1):
         if temp%i==0:
@@ -20,13 +31,16 @@ def factorization(n):
         primen.append(n)
         degree.append(1)
         primend.append([n,1])
-    return primen,degree
+    return primend
+#    return primen,degree
 
 print(ans)  # 72 = 2**5 * 3**4
 print(ans[0])  # prime number
 print(ans[1])  # degree
 
-############
+##############################
+# 約数列挙
+##############################
 def make_divisors(n):
     divisors = []
     for i in range(1, int(n**0.5)+1):

@@ -1,48 +1,41 @@
 #####################
 # 最大公約数gcd
-#####################
-from fractions import gcd
-from math import gcd
-
-# print(gcd(2,6))
-
-#####################
 # 最小公倍数lcm
 #####################
-from fractions import gcd
-from math import gcd
+from fractions import gcd   #for python3.4
+from math import gcd        #for python3.8
+
 def lcm(a,b):
-    G=gcd(a,b) #最大公約数
-    L=(a//G)*b #最小公倍数
+    G = gcd(a, b) #最大公約数
+    L = (a//G)*b #最小公倍数
     return L
 
-# print(lcm(2,6))
+#print(gcd(6,8)) #2
+#print(lcm(6,8)) #24
 
 #####################
-# 複数の最大公約数gcd
+# 複数の最大公約数Gcd
+# 複数の最小公倍数Lcm
 #####################
-from math import gcd
-from math import reduce
-from fractions import gcd
-from functools import reduce
-def Gcd(list):
-    gcd = 1
-    G = reduce(gcd, list)
-    return G
+from fractions import gcd   #for python3.4
+from math import gcd        #for python3.8
 
-# A = [2,6,8]
-# print(Gcd(A))
+def Gcd(lt):
+    l = len(lt)
+    ret = [1]*l
+    ret[0] = lt[0]
+    for i in range(1,l):
+        ret[i] = gcd(ret[i-1], lt[i])
+    return ret
 
-#####################
-# 複数の最小公倍数lcm
-#####################
-from math import gcd
-from fractions import gcd
-def Lcm(list):
-    L = 1
-for a in list:
-    L = (a // gcd(a, L))*L
-    return L
+def Lcm(lt):
+    l = len(lt)
+    ret = [1]*l
+    ret[0] = lt[0]
+    for i in range(1,l):
+        ret[i] = (ret[i-1] // gcd(ret[i-1], lt[i])) * lt[i]
+    return ret
 
-# A = [2,6,8]
-# print(Lcm(A))
+A = [2,6,7,8]
+#print(Gcd(A)) [2, 2, 1, 1]
+#print(Lcm(A)) [2, 6, 42, 168]
