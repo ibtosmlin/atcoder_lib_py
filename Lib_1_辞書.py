@@ -14,3 +14,7 @@ for k, v in dic.items():
 
 dics = sorted(dic.items(), key=lambda x: x[0])
 dics = sorted(dic.items(), key=lambda x: x[1])
+
+dic = dic.get('key1')  #->Value が返る
+dic = dic.get('key99') #->None が返る
+dic = dic.get('key99',123) #->123 が返る

@@ -2,8 +2,9 @@
 # 複数の文字列を変換
 ##############################
 S='54IZSB'
-S = S.translate(str.maketrans("ODIZSB","001258"))
+S = S.translate(str.maketrans("BSI","123"))
 print(S)
+# 543Z21
 
 ##############################
 # 文字列の変換
