@@ -16,3 +16,8 @@ for h in HL:
   D[h,:]=(D[h-1,:]+1)*Gd[h,:]
   U[-h-1,:]=(U[-h,:]+1)*Gd[-h-1,:]
 print(np.max(D+U+L+R-3))
+
+a = np.array([0, 1, 2])
+b = np.array([2, 0, 6])
+
+print(np.maximum(a, b))

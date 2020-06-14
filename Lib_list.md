@@ -18,7 +18,6 @@
 1. [Lib_A_深さ優先探索(再帰)_二分グラフ.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_深さ優先探索(再帰)_二分グラフ.py)
 1. [Lib_A_幅優先探索_迷路.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_幅優先探索_迷路.py)
 1. [Lib_A_幅優先探索_隣接リスト.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_幅優先探索_隣接リスト.py)
-1. [Lib_A_幅優先探索、深さ優先探索.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_幅優先探索、深さ優先探索.py)(不要か)
 
 ### ツリー・グラフ
 1. [Lib_A_UnionFindTree.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_UnionFindTree.py)
@@ -30,10 +29,19 @@
 1. [Lib_A_ワーシャルフロイド(三重ループ).py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_ワーシャルフロイド(三重ループ).py)
 
 ### 動的計画法
-1. [Lib_A_ナップサック.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_ナップサック.py)
+#### ナップサック
+1. [Lib_A_ナップサック(重さ小さい).py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_ナップサック(重さ小さい).py)
+1. [Lib_A_ナップサック(価値小さい).py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_ナップサック(価値小さい).py)
 
-### 数え上げ
-1. [Lib_A_しゃくとり法.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_しゃくとり法.py)
+#### LCS(最長共通部分列)
+1. [Lib_A_LCS(Numpy).py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_LCS(Numpy).py)
+1. [Lib_A_LCS(woNumpy).py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_LCS(Numpy).py)
+
+### しゃくとり法
+1. [Lib_A_しゃくとり法_数え上げ.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_しゃくとり法_数え上げ.py)
+1. [Lib_A_しゃくとり法_最大区間.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_しゃくとり法_最大区間.py)
+
+### 優先度付きキュー
 1. [Lib_A_優先度付きキュー.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_優先度付きキュー.py)
 
 ### 二分探索
@@ -52,3 +60,4 @@
 1. [Lib_N_素数.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_N_素数.py)
 1. [Lib_N_nCr剰余.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_N_nCr剰余.py)
 1. [Lib_N_素数の剰余演算.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_N_素数の剰余演算.py)
+1. [Lib_A_繰り返し二乗法.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_繰り返し２乗法.py)

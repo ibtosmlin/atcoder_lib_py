@@ -52,7 +52,7 @@ def main():
                 init_q.append([sth,stw])
 
     ret = bfs(init_q)
-    print(Dist[glh][glw])
+    print(ret[glh][glw])
 
 
 if __name__ == '__main__':
