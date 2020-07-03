@@ -15,13 +15,13 @@ def main():
     right = 0
 #    conditon = 999
     for left in range(0,N):
-        while (right < N and (A[right-1] < A[right] or left == right)):   #####条件
+        if right < N and left == right:
+            right += 1
+        while (right < N and A[right-1] < A[right]):   #####条件
 #    conditon = 999
             right += 1
         ret += right - left                  #####値の更新
-#        print(ret, left, right)
-        if left == right:
-            right += 1
+#        print("A", ret, left, right)
 
     print(ret)
 

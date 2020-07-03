@@ -50,6 +50,8 @@
 ### 区間スケジューリング
 1. [Lib_A_区間スケジューリング.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_区間スケジューリング.py)
 
+### 区間カウント
+1. [Lib_A_区間カウント.py](file:/mnt/c/Users/eieib/linux/zgit/atcoder_lib_py/Lib_A_区間カウント.py)
 
 ##### under construction
 1. [Lib_A_貪欲法.py](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_貪欲法.py)
