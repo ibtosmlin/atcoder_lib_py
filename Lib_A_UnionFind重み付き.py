@@ -66,14 +66,8 @@ class UnionFindWeighted():
 
 ################
 
-def main():
-    N, M = map(int, input().split())
-    uf = UnionFindWeighted(N)
-    for i in range(M):
-        a,b,w = map(int,input().split())
-        uf.unite(a-1, b-1, w)
-
-
-
-if __name__ == '__main__':
-    main()
+N, M = map(int, input().split())
+uf = UnionFindWeighted(N)
+for i in range(M):
+    a,b,w = map(int,input().split())
+    uf.unite(a-1, b-1, w)

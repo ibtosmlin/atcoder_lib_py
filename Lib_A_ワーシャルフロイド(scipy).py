@@ -7,18 +7,14 @@
 
 from scipy.sparse.csgraph import floyd_warshall
 
-def main():
-    N, M = map(int,input().split()) #N:頂点数　M:辺の数
-    d = [[float("inf")]*N for i in range(N)]
-    #d[u][v] : 辺uvのコスト(存在しないときはinf)
-    for i in range(M):
-        u, v, w = map(int,input().split())
-        d[u-1][v-1] = w
-        d[v-1][u-1] = w
-    for i in range(N):
-        d[i][i] = 0 #自身のところに行くコストは０
+N, M = map(int,input().split()) #N:頂点数　M:辺の数
+d = [[float("inf")]*N for i in range(N)]
+#d[u][v] : 辺uvのコスト(存在しないときはinf)
+for i in range(M):
+    u, v, w = map(int,input().split())
+    d[u-1][v-1] = w
+    d[v-1][u-1] = w
+for i in range(N):
+    d[i][i] = 0 #自身のところに行くコストは０
 
-    print(floyd_warshall(d))
-
-if __name__ == '__main__':
-    main()
+print(floyd_warshall(d))   #d[i][j]に頂点i, j間の最短距離を格納

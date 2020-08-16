@@ -22,7 +22,7 @@ def nPr(n, r):
         return 0
     return g1[n] * g2[n-r] % mod
 
-ret = nCr(4, 2, mod)
+ret = nCr(4, 2)
 
 #####################################
 # nCr % 10**9+7  n～10^9　r～10^5

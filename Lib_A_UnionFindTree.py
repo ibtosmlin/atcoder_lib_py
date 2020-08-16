@@ -59,15 +59,10 @@ class UnionFind():
 
 ################
 
-def main():
-    N, M = map(int, input().split())
-    uf = UnionFind(N)
-    for i in range(M):
-        a,b = map(int,input().split())
-        uf.unite(a-1, b-1)
+n, m = map(int, input().split())
+uf = UnionFind(n)
+for _ in range(m):
+    a,b = map(int,input().split())
+    uf.unite(a-1, b-1)
 
-    print(uf.group_count())
-
-
-if __name__ == '__main__':
-    main()
+print(uf.group_count())

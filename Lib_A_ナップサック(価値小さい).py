@@ -11,18 +11,14 @@
 
 import numpy as np
 
-def main():
-    N, W = map(int, input().split())
-    max_vi = 10**3
-    max_V = N*max_vi
-    dp = [W+1] * (max_V+1)
-    dp[0] = 0
-    dp = np.array(dp)
-    for _ in range(N):
-        w_, v_ = map(int, input().split())
-        dp[v_:] = np.minimum(dp[v_:], dp[:-v_] + w_)
+N, W = map(int, input().split())
+max_vi = 10**3
+max_V = N*max_vi
+dp = [W+1] * (max_V+1)
+dp[0] = 0
+dp = np.array(dp)
+for _ in range(N):
+    w_, v_ = map(int, input().split())
+    dp[v_:] = np.minimum(dp[v_:], dp[:-v_] + w_)
 #    print(dp)
-    print(np.max(np.where(dp <= W)))
-
-if __name__ == '__main__':
-    main()
+print(np.max(np.where(dp <= W)))

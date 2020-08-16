@@ -10,7 +10,6 @@ from heapq import heapify, heappop, heappush, heappushpop
 INF = float('inf')
 
 def dijkstra(s,n,g):
-    seen = [False]*n
     cost = [INF]*n
     cost[s] = 0 #スタートはコスト0
     next_q = [(0,s)]
@@ -26,20 +25,16 @@ def dijkstra(s,n,g):
                 heappush(next_q,(nc, nedge))
     return cost
 
-def main():
-    N, M, T = map(int, input().split())
-    A = list(map(int,input().split()))
-    graph_F = [[] for _ in range(N)]
-    graph_R = [[] for _ in range(N)]
-    #リストの作成
-    for i in range(M):
-        a, b, c = map(int, input().split())
-        a -= 1
-        b -= 1
-        graph_F[a].append((b,c))
-        graph_R[b].append((a,c))
+N, M = map(int, input().split())
+graph_F = [[] for _ in range(N)]
+graph_R = [[] for _ in range(N)]    #行きと帰りを分けた（有向グラフ）場合
+#リストの作成
+for _ in range(M):
+    a, b, c = map(int, input().split())
+    a -= 1
+    b -= 1
+    graph_F[a].append((b,c))
+    graph_R[b].append((a,c))        #行きと帰りを分けた（有向グラフ）場合
 
-    F = dijkstra(0,N,graph_F)
-
-if __name__ == '__main__':
-    main()
+Cost = dijkstra(0,N,graph_F)    #0からスタート
+print(Cost)

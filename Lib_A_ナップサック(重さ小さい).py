@@ -11,15 +11,11 @@
 
 import numpy as np
 
-def main():
-    N, W = map(int, input().split())
-    dp = [0] * (W+1)
-    dp = np.array(dp)
-    for _ in range(N):
-        w_, v_ = map(int, input().split())
-        dp[w_:] = np.maximum(dp[w_:], dp[:-w_] + v_)
+N, W = map(int, input().split())
+dp = [0] * (W+1)
+dp = np.array(dp)
+for _ in range(N):
+    w_, v_ = map(int, input().split())
+    dp[w_:] = np.maximum(dp[w_:], dp[:-w_] + v_)
 #    print(dp)
-    print(dp[W])
-
-if __name__ == '__main__':
-    main()
+print(dp[W])

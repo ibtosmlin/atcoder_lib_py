@@ -54,16 +54,14 @@ def kruskal(n, edges):
             ret_nodes.add(v)
     return ret_weight
 
-def main():
-    N, M = map(int,.input().split())
-    #リストの作成
-    Edges = []
-    for i in range(M):
-        a, b, w = map(int, input().split())
-        Edges.append((w,a-1,b-1))
-    Edges.sort()
+################################
 
-    print(kruskal(N, Edges))
+N, M = map(int,.input().split())
+#リストの作成
+Edges = []
+for i in range(M):
+    a, b, w = map(int, input().split())
+    Edges.append((w,a-1,b-1))
+Edges.sort()
 
-if __name__ == '__main__':
-    main()
+print(kruskal(N, Edges))

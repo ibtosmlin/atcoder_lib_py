@@ -31,14 +31,12 @@ def dfs(g,v,c):
             return False
     return True
 
-def main():
-    ret = True
-    for i in range(N):
-        if seen[i] == True: continue
-        if dfs(graph, i, col): ret = False
+#######################################
 
-    print(seen)
-    print(color)
+ret = True
+for i in range(N):
+    if seen[i] == True: continue
+    if dfs(graph, i, col): ret = False
 
-if __name__ == '__main__':
-    main()
+print(seen)
+print(color)

@@ -15,17 +15,13 @@ def warshall_floyd(d, M):
 
 ##############################
 
-def main():
-    N, M = map(int,input().split()) #N:頂点数　M:辺の数
-    d = [[float("inf")]*N for i in range(N)]
-    #d[u][v] : 辺uvのコスト(存在しないときはinf)
-    for i in range(M):
-        u, v, w = map(int,input().split())
-        d[u-1][v-1] = w
-        d[v-1][u-1] = w
-    for i in range(N):
-        d[i][i] = 0 #自身のところに行くコストは０
-    print(warshall_floyd(d,N))
-
-if __name__ == '__main__':
-    main()
+N, M = map(int,input().split()) #N:頂点数　M:辺の数
+d = [[float("inf")]*N for i in range(N)]
+#d[u][v] : 辺uvのコスト(存在しないときはinf)
+for i in range(M):
+    u, v, w = map(int,input().split())
+    d[u-1][v-1] = w
+    d[v-1][u-1] = w
+for i in range(N):
+    d[i][i] = 0 #自身のところに行くコストは０
+print(warshall_floyd(d,N))
