@@ -1,0 +1,119 @@
+#!/usr/bin python3
+# -*- coding: utf-8 -*-
+# https://atcoder.jp/contests/practice2/tasks/practice2_j
+
+# Segment Tree
+# 一点更新・範囲集約
+# 1-indexed
+# update(i,x)   :ai を x に変更する
+# add(i,x)      :ai に x を加算する
+# query(l,r)    :半開区間 [l,r) に対してモノイド al・…・ar−1 を返す
+# lower_bound_index(self, i, v):func がmaxの時、使用可能
+#               :i番目以降でai>=vとなるindex
+#  モノイドとは、集合と二項演算の組で、結合法則と単位元の存在するもの
+# ex. +, max, min
+# [ 1] a0 ・ a1  ・ a2 ・ a3 ・ a4 ・ a5 ・ a6 ・ a7  ->[0]
+# [ 2] a0 ・ a1  ・ a2 ・ a3       [ 3] a4 ・ a5 ・ a6・ a7
+# [ 4] a0 ・ a1    [ 5] a2 ・ a3   [ 6] a4 ・ a5   [ 7] a6 ・ a7
+# [ 8] a0 [ 9] a1  [10] a2 [11] a3 [12] a4 [13] a5 [14] a6 [15] a7
+
+#                      [0001]
+#          [0010]                  [0011]
+#    [0100]      [0101]      [0110]      [0111]
+# [1000][1001][1010][1011][1100][1101][1110][1111]
+
+# size = 8  元の配列数の２べき乗値
+# 親のインデックス         i//2 or i>>=1 bitで一個右シフト
+# 左側の子のインデックス    2*i
+# 右側の子のインデックス    2*i+1
+# aiの値が代入されているインデックス    i+size
+
+class SegmentTree:
+    # 初期化処理
+    # f     : SegmentTreeにのせるモノイド
+    # idele : fに対する単位元
+    def __init__(self, size, f=lambda x,y : min(x, y), idele=float('inf')):
+        self.size = 2**(size-1).bit_length()    # 簡単のため要素数nを2冪にする
+        self.idele = idele                      # 単位元
+        self.f = f                              # モノイド
+        self.dat = [self.idele]*(self.size*2)   # 要素を単位元で初期化
+
+## one point
+    def update(self, i, x):
+        i += self.size  # 1番下の層におけるインデックス
+        self.dat[i] = x
+        while i > 0:    # 層をのぼりながら値を更新
+            i >>= 1     # 1つ上の層のインデックス(完全二分木における親)
+            # 下の層2つの演算結果の代入(完全二分木における子同士の演算)
+            self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
+## one point
+    def add(self, i, x):
+        i += self.size  # 1番下の層におけるインデックス
+        self.dat[i] += x
+        while i > 0:    # 層をのぼりながら値を更新 indexが0になれば終了
+            i >>= 1     # 1つ上の層のインデックス(完全二分木における親)
+            # 下の層2つの演算結果の代入(完全二分木における子同士の演算)
+            self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
+## range
+    def query(self, l, r):
+        l += self.size  # 1番下の層におけるインデックス
+        r += self.size  # 1番下の層におけるインデックス
+        lres, rres = self.idele, self.idele # 左側の答えと右側の答えを初期化
+        while l < r:    # lとrが重なるまで上記の判定を用いて加算を実行
+            # 左が子同士の右側(lが奇数)(lの末桁=1)ならば、dat[l]を加算
+            if l & 1:
+                lres = self.f(lres, self.dat[l])
+                l += 1
+            # 右が子同士の右側(rが奇数)(rの末桁=1)ならば、dat[r-1]を加算
+            if r & 1:
+                r -= 1
+                rres = self.f(self.dat[r], rres) # モノイドでは可換律は保証されていないので演算の方向に注意
+            l >>= 1
+            r >>= 1
+        res = self.f(lres, rres)
+        return res
+
+# You can use lower_bound_index only if f == max.
+# v<=ak となる最小のk # startはi
+
+    def lower_bound_index(self, i, v):
+        i += self.size
+        # dat[i] >= v となる箱を探索する
+        while self.dat[i] < v:
+            # 左が子同士の右側(lが奇数)(lの末桁=1)ならば
+            if i & 1:
+                # 右隣りが同じ階層にいるなら、右隣りに移る
+                if len(bin(i)) == len(bin(i+1)):
+                    i += 1
+                # 右隣りがない場合（元の配列の一番右なので）終了
+                else:
+                    return self.size
+            else:
+                i >>= 1 # 1つ上の層のインデックス(完全二分木における親)
+        # dat[i] >= v となる子どもをなるべく左側をとるように探索する
+        while i < self.size:
+            if self.dat[2*i] >= v:
+                i = 2*i
+            else:
+                i = 2*i + 1
+        return i - self.size
+
+    def init(self, a):
+        for i, x in enumerate(a):
+            # 1番下の層におけるインデックス
+            self.dat[i + self.size] = x
+        for i in range(self.size-1, -1, -1):
+            self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
+
+n, q = map(int, input().split())
+a = list(map(int, input().split()))
+sgt = SegmentTree(n, lambda x,y : max(x, y), -float('inf'))
+sgt.init(a)
+for _ in range(q):
+    t, u, v = map(int, input().split())
+    if t == 1:
+        sgt.update(u-1, v)
+    elif t == 2:
+        print(sgt.query(u-1, v))
+    else:
+        print(min(sgt.lower_bound_index(u-1, v), n) + 1)

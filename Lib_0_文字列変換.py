@@ -27,6 +27,11 @@ import numpy as np
 N_D = np.base_repr(N,D)
 print(N_D)
 
+
+format(n, 'b')  #二進数表記
+
+int('XXX', 4)   #n進数表記を10進数表記に
+
 #########################
 # BIT演算
 #########################

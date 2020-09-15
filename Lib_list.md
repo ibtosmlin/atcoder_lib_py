@@ -14,10 +14,11 @@
 1. [Bit全探索数式](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_Bit全探索数式.py)
 1. [深さ優先探索(スタック)_迷路](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_深さ優先探索(スタック)_迷路.py)
 1. [深さ優先探索(スタック)_隣接リスト](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_深さ優先探索(スタック)_隣接リスト.py)
-2. [深さ優先探索(再帰)](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_深さ優先探索(再帰).py)
-3. [深さ優先探索(再帰)_二分グラフ](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_深さ優先探索(再帰)_二分グラフ.py)
-4. [幅優先探索_迷路](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_幅優先探索_迷路.py)
-5. [幅優先探索_隣接リスト](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_幅優先探索_隣接リスト.py)
+1. [深さ優先探索(再帰)](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_深さ優先探索(再帰).py)
+1. [深さ優先探索(再帰)_二部グラフ](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_深さ優先探索(再帰)_二部グラフ.py)
+1. [幅優先探索_迷路](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_幅優先探索_迷路.py)
+1. [幅優先探索_隣接リスト](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_幅優先探索_隣接リスト.py)
+1. [二部グラフ判定](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_二部グラフ判定.py)
 
 ### ツリー・グラフ
 1. [UnionFindTree](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_UnionFindTree.py)
@@ -40,6 +41,13 @@
 #### LIS(最長単調増加部分列)
 1. [LIS](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_LIS.py)
 
+### データ構造
+#### Segment Tree
+1. [一点更新範囲集約](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_D_SegmentTree_一点更新・区間集約.py)
+
+#### BIT(BinaryIndexedTree)
+1. [BinaryIndexedTree](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_D_BinaryIndexedTree.py)
+
 ### その他
 1. [しゃくとり法_数え上げ](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_しゃくとり法_数え上げ.py)
 1. [しゃくとり法_最大区間](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_しゃくとり法_最大区間.py)
@@ -60,7 +68,8 @@
 1. [素数](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_N_素数.py)
 1. [nCr剰余](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_N_nCr剰余.py)
 1. [素数の剰余演算](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_N_素数の剰余演算.py)
-1. [繰り返し二乗法](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_繰り返し２乗法.py)
+1. [繰り返し２乗法](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_繰り返し２乗法.py)
 
-## ゲーム系
-1. [石取大合戦](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_G_石取大合戦.py)
+## その他系
+1. [ゲーム](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_G_ゲーム系.md)
+1. [XOR計算](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_G_XOR.md)

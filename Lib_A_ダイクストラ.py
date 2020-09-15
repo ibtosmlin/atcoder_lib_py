@@ -4,37 +4,66 @@
 # ダイクストラ法
 # 重み付きグラフ関係により最短経路のリストを作る
 # 有向グラフで優先度付きキューで探索
+# https://atcoder.jp/contests/abc035/tasks/abc035_d
 
 from heapq import heapify, heappop, heappush, heappushpop
 
 INF = float('inf')
 
-def dijkstra(s,n,g):
-    cost = [INF]*n
-    cost[s] = 0 #スタートはコスト0
-    next_q = [(0,s)]
-    heapify(next_q)
-    while len(next_q)>0:
-        c, i = heappop(next_q)
-        if cost[i] < c:
-            continue
-        for nedge, ncost in g[i]:
-            nc = cost[i]+ncost
-            if cost[nedge]>nc:
-                cost[nedge] = nc
-                heappush(next_q,(nc, nedge))
-    return cost
+class dijkstra:
+    def __init__(self, n, graph):
+        self.dist = [INF] * n   # 最短距離リスト
+        self.graph = graph      # 有向グラフ
+        self.prev = [-1] * n    # 前のノード
 
-N, M = map(int, input().split())
-graph_F = [[] for _ in range(N)]
-graph_R = [[] for _ in range(N)]    #行きと帰りを分けた（有向グラフ）場合
+    def build(self, start):
+        self.dist = [INF] * n
+        self.dist[start] = 0
+        next_q = [(0, start)]
+        heapify(next_q)
+        while len(next_q)>0:
+            cd, cn = heappop(next_q)
+            if self.dist[cn] < cd:
+                continue
+            for nn, nd in self.graph[cn]:
+                nd_ = self.dist[cn] + nd
+                if self.dist[nn] > nd_:
+                    self.dist[nn] = nd_
+                    self.prev[nn] = cn
+                    heappush(next_q, (nd_, nn))
+        return self.dist
+
+    def shortest_distance(self, goal):
+        return self.dist[goal]
+
+    def shortest_path(self, goal):
+        path = []
+        node = goal
+        while node is not None:
+            path.append(node)
+            node = self.prev[node]
+        return path[::-1]
+
+
+##########################################
+
+n, m, t = map(int, input().split())
+A = list(map(int,input().split()))
+graph_F = [[] for _ in range(n)]
+graph_R = [[] for _ in range(n)]    #行きと帰りを分けた（有向グラフ）場合
 #リストの作成
-for _ in range(M):
+for _ in range(m):
     a, b, c = map(int, input().split())
-    a -= 1
-    b -= 1
+    a, b = a-1, b-1
     graph_F[a].append((b,c))
     graph_R[b].append((a,c))        #行きと帰りを分けた（有向グラフ）場合
 
-Cost = dijkstra(0,N,graph_F)    #0からスタート
-print(Cost)
+dijF = dijkstra(n, graph_F)  #クラスのインスタンス化
+dijR = dijkstra(n, graph_R)
+F = dijF.build(0)
+R = dijR.build(0)
+
+ret = 0
+for i in range(n):
+    ret = max(ret, (t-F[i]-R[i])*A[i])
+print(ret)

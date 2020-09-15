@@ -1,7 +1,7 @@
 #!/usr/bin python3
 # -*- coding: utf-8 -*-
 
-# 二分グラフ
+# 二部グラフ
 
 N, M = map(int, input().split())
 graph = [[] for _ in range(N)]

@@ -1,38 +1,31 @@
 #!/usr/bin python3
 # -*- coding: utf-8 -*-
+# https://atcoder.jp/contests/atc001/tasks/unionfind_a
 
 class UnionFind():
-    def __init__(self, n):      #初期化
-        self.n = n
-        # 親
-        self.parents = [i for i in range(n)]
-        # 木の深さ
-        self.ranks = [0] * n
-        # グループの要素数
-        self.sizes = [1] * n
+    def __init__(self, n):                      #初期化
+        self.n = n                              # 要素数
+        self.parents = [i for i in range(n)]    # 親
+        self.ranks = [0] * n                    # 木の深さ
+        self.sizes = [1] * n                    # グループの要素数
 
-    def find(self, x):          #親を出力
+    def find(self, x):              # 親を出力
         if self.parents[x] == x:
             return x
         else:
             self.parents[x] = self.find(self.parents[x])
             return self.parents[x]
 
-    def unite(self, x, y):
+    def unite(self, x, y):          # ユニオン
         x = self.find(x)
         y = self.find(y)
-
-        if x == y:
-            return
-
-        if self.ranks[x] < self.ranks[y]:
-            self.parents[x] = y
-            self.sizes[y] += self.sizes[x]
-        else:
-            self.parents[y] = x
-            self.sizes[x] += self.sizes[y]
-            if self.ranks[x]==self.ranks[y]:
-                self.ranks[x] += 1
+        if x == y: return
+        if self.ranks[x] > self.ranks[y]:
+            x , y = y, x    #yを親にする
+        if self.ranks[x] == self.ranks[y]:
+                self.ranks[y] += 1
+        self.parents[x] = y
+        self.sizes[y] += self.sizes[x]
 
     def same(self, x, y):       #xとyが同じグループかどうか
         return self.find(x) == self.find(y)
@@ -42,8 +35,7 @@ class UnionFind():
         return {i for i in range(self.n) if self.find(i) == root}
 
     def size(self, x):          #グループの要素数
-        root = self.find(x)
-        return self.sizes[root]
+        return self.sizes[self.find(x)]
 
     def roots(self):            #親の要素一覧
         return {i for i, x in enumerate(self.parents) if i == x}
@@ -66,3 +58,4 @@ for _ in range(m):
     uf.unite(a-1, b-1)
 
 print(uf.group_count())
+print(uf.same(1,2))

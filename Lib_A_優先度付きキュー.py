@@ -9,20 +9,15 @@
 
 from heapq import heapify, heappop, heappush, heappushpop
 
-def main():
-    hp = []
-    heapify(hp)
-    heappush(hp, (1,'a'))
-    hist = {'a'}
-    while len(hp)>0:
+hp = []
+heapify(hp)
+heappush(hp, (1,'a'))
+hist = {'a'}
+while len(hp)>0:
 #    for k in range(K):
-        v, tp = heappop(hp)
-        print(v, tp)
-        if tp in hist: continue
-        #次の情報 nv, ntp
-        heappush(hp, (nv,ntp))
-        hist.add(ntp)
-
-
-if __name__ == '__main__':
-    main()
+    v, tp = heappop(hp)
+    print(v, tp)
+    if tp in hist: continue
+    #次の情報 nv, ntp
+    heappush(hp, (nv,ntp))
+    hist.add(ntp)
