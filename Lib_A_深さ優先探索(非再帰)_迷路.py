@@ -5,21 +5,20 @@ from collections import deque
 
 def dfs(init):
     next_q = deque([])
-    for i in init:
-        next_q.append(i)
-        Dist[i[0]][i[1]] = 0
+    for hi, wi in init:
+        next_q.append([hi, wi])
+        Dist[hi][wi] = 0
 
     while len(next_q)!=0:
         #スタック取り出し
         h,w = next_q.pop()
         for d in direc:
             hs, ws = h + d[0], w + d[1]
-            if not (0<=hs<H and 0<=ws<W):
-                continue
+            if not (0<=hs<H and 0<=ws<W): continue
             if Gmap[hs][ws]=='.' and Dist[hs][ws]==INF:
                 next_q.append([hs,ws])
                 Dist[hs][ws] = Dist[h][w] + 1
-    return ret = Dist
+    return Dist
 
 ##################################################
 

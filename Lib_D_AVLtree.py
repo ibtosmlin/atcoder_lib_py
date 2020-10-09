@@ -9,8 +9,8 @@ class Node:
         self.left = None
         self.right = None
         self.height = 0
-        self.sum = 0
-        self.size = 0
+        self.sum = data
+        self.size = 1
     # データを探す
     def search(self, x):
         while self is not None:
@@ -37,6 +37,23 @@ class Node:
                 self = self.right
         return res
 
+    # k番目を探す
+    def get_kth(self, k):
+        while True:
+            if self is None:
+                return -1
+            if self.left is None:
+                lsize = 0
+            else:
+                lsize = self.left.size
+            if k == lsize:
+                return self.data
+            if k < lsize:
+                self = self.left
+            else:
+                k -= lsize + 1
+                self = self.right
+
 class AVL:
 # 初期化
     def __init__(self): # 初期化
@@ -50,11 +67,18 @@ class AVL:
         ret = max(self.get_height(node.left), self.get_height(node.right)) + 1
         return ret
     def get_size(self, node):
-        if not node: return -1
+        if not node: return 0
         return node.size
     def recal_size(self, node):
-        if not node: return -1
-        ret = max(self.get_size(node.left), self.get_size(node.right)) + 1
+        if not node: return 0
+        ret = self.get_size(node.left) + self.get_size(node.right) + 1
+        return ret
+    def get_sum(self, node):
+        if not node: return 0
+        return node.sum
+    def recal_sum(self, node):
+        if not node: return 0
+        ret = self.get_sum(node.left) + self.get_sum(node.right) + node.data
         return ret
     def get_balance(self, node):
         # 返り値>1:左の部分木が重い->右回転
@@ -73,6 +97,8 @@ class AVL:
         lc.height = self.recal_height(lc)
         node.size = self.recal_size(node)
         lc.size = self.recal_size(lc)
+        node.sum = self.recal_sum(node)
+        lc.sum = self.recal_sum(lc)
         return lc
     def rotate_left(self, node):
         rc = node.right
@@ -83,6 +109,8 @@ class AVL:
         rc.height = self.recal_height(rc)
         node.size = self.recal_size(node)
         rc.size = self.recal_size(rc)
+        node.sum = self.recal_sum(node)
+        rc.sum = self.recal_sum(rc)
         return rc
 # 挿入
     def insert(self, data):
@@ -95,6 +123,7 @@ class AVL:
             node.right = self._insert(data, node.right)
         node.height = self.recal_height(node)
         node.size = self.recal_size(node)
+        node.sum = self.recal_sum(node)
         return self.settle_unbalance(data, node)
 
 # バランス調整
@@ -161,6 +190,7 @@ class AVL:
 
         node.height = self.recal_height(node)
         node.size = self.recal_size(node)
+        node.sum = self.recal_sum(node)
         bal = self.get_balance(node)
         if bal > 1:
             if self.get_balance(node.left) < 0:
@@ -183,7 +213,7 @@ class AVL:
         ret = []
         if node.left:
             ret.extend(self._traverse_inorder(node.left))
-        ret.append([node.data, node.size])
+        ret.append([node.data, node.size, node.height, node.sum])
         if node.right:
             ret.extend(self._traverse_inorder(node.right))
         return ret
@@ -195,6 +225,10 @@ class AVL:
 # 最小値探索
     def search_min(self):
         return self.root.search_min()
+
+# k番目探索
+    def get_kth(self, k):
+        return self.root.get_kth(k)
 
 # 最下限
     def lower_bound(self, x):
@@ -212,25 +246,45 @@ class AVL:
 
 ##################################################
 
-import random
 
 avl = AVL()
-a = [random.randint(1, 2000) for i in range(5)]
-print(a)
-for ai in a:
-    avl.insert(ai)
-print(avl.traverse_inorder(),'height', avl.get_height(avl.root))
-print(avl.search_min().data)
+q = int(input())
+for _ in range(q):
+    t, a = map(int, input().split())
+    if t == 1:
+        avl.insert(a)
+    else:
+        kn = avl.get_kth(a-1)
+        print(kn)
+        avl.remove(kn)
 
-avl.remove(min(a))
-print('削除後')
-print(avl.traverse_inorder(),'height', avl.get_height(avl.root))
-print(avl.search_min().data)
 
-if avl.root.search(300) is not None:
-    print(avl.search(300))
-else:
-    print('NOdata')
-print(avl.lower_bound(300))
 
-print(avl.traverse_inorder()[3]) #3+1番目取得
+#import random
+
+#avl = AVL()
+#a = [random.randint(1, 2000) for i in range(7)]
+#print(a)
+#for ai in a:
+#    avl.insert(ai)
+#print(avl.traverse_inorder())
+#print('size', avl.get_size(avl.root),'height', avl.get_height(avl.root))
+#print(avl.search_min().data)
+#print("ti:", 3,avl.traverse_inorder()[3]) #3+1番目取得
+#print("kth:", 3, avl.get_kth(3)) #3+1番目取得
+
+#avl.remove(min(a))
+#print('削除後')
+#print(avl.traverse_inorder())
+#print('size', avl.get_size(avl.root),'height', avl.get_height(avl.root))
+#print("min:",avl.search_min().data)
+#
+#if avl.root.search(300) is not None:
+#    print(avl.search(300))
+#else:
+#    print('NOdata')
+#print("lb:", avl.lower_bound(300))
+#print("ti:", 3,avl.traverse_inorder()[3]) #3+1番目取得
+#print("kth:", 3, avl.get_kth(3)) #3+1番目取得
+
+#print(avl.root.data)

@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 # https://atcoder.jp/contests/atc001/tasks/unionfind_a
 
-class UnionFind():
+import sys
+sys.setrecursionlimit(10001000)
+
+class UnionFind:
     def __init__(self, n):                      #初期化
         self.n = n                              # 要素数
         self.parents = [i for i in range(n)]    # 親
@@ -13,8 +16,9 @@ class UnionFind():
         if self.parents[x] == x:
             return x
         else:
-            self.parents[x] = self.find(self.parents[x])
-            return self.parents[x]
+            p = self.find(self.parents[x])
+            self.parents[x] = p
+            return p
 
     def unite(self, x, y):          # ユニオン
         x = self.find(x)

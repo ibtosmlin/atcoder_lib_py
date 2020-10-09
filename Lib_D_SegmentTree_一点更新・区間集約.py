@@ -105,6 +105,10 @@ class SegmentTree:
         for i in range(self.size-1, -1, -1):
             self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
 
+    def get_list(self):
+        return self.dat[self.seize:]
+
+
 n, q = map(int, input().split())
 a = list(map(int, input().split()))
 sgt = SegmentTree(n, lambda x,y : max(x, y), -float('inf'))

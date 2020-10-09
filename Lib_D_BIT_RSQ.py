@@ -62,7 +62,7 @@ class BinaryIndexedTree:
         return ret
 
     def get_aggrigate_sequence(self):
-        return [bit.sum(i) for i in range(self.size)]
+        return [self.sum(i) for i in range(self.size)]
 
     def __str__(self):
         seq = self.get_original_sequence()

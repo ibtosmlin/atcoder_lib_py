@@ -1,6 +1,9 @@
 #!/usr/bin python3
 # -*- coding: utf-8 -*-
 
+import sys
+sys.setrecursionlimit(10**9)
+
 # 二部グラフ
 
 N, M = map(int, input().split())

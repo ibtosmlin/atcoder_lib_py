@@ -3,17 +3,18 @@
 
 from bisect import bisect
 
-N = int(input())
-A = list(map(int, input().split()))
+n = int(input())
+a = list(map(int, input().split()))
 dp = []
+# 最長増加部分列
 # dp[k]
 # 今まで見た来たものの中で、単調増加な部分列であって、
 # 長さ k であるようなもののうち、その最後の要素の最小値
 # kに対して単調増加
-for a in A:
-    pos = bisect(dp, a)
+for ai in a:
+    pos = bisect(dp, ai)
     if len(dp) <= pos:
-        dp.append(a)
+        dp.append(ai)
     else:
-        dp[pos] = a
+        dp[pos] = ai
 print(len(dp))

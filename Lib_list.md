@@ -22,6 +22,7 @@
 
 ### ツリー・グラフ
 1. [UnionFindTree](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_UnionFindTree.py)
+1. [UnionFind重み付き](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_UnionFind重み付き.py)
 1. [ダイクストラ](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_ダイクストラ.py)
 1. [最小全域木_kruskal](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_最小全域木_kruskal.py)
 
@@ -46,7 +47,8 @@
 1. [一点更新範囲集約](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_D_SegmentTree_一点更新・区間集約.py)
 
 #### BIT(BinaryIndexedTree)
-1. [BinaryIndexedTree](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_D_BinaryIndexedTree.py)
+1. [BIT RangeSumQuery](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_D_RSQ.py)
+1. [BIT RangeAddQuery](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_D_RAQ.py)
 
 ### その他
 1. [しゃくとり法_数え上げ](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_しゃくとり法_数え上げ.py)
@@ -60,7 +62,6 @@
 
 ##### under construction
 1. [貪欲法](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_貪欲法.py)
-1. [UnionFind重み付き](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_A_UnionFind重み付き.py)
 
 ## 数学系
 1. [順列・組み合わせ](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_N_順列・組み合わせ.py)

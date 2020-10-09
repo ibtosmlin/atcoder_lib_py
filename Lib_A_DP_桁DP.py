@@ -32,7 +32,7 @@ for i in range(l):
                     continue
                 if st_ == 0 and x < ni:
                     st_ = 1
-                dp[i_][j_][st_] += dp[i][j][st]
+                dp[][j_][st_] += dp[i][j][st]
 
 print(sum(dp[l][k]))
 
