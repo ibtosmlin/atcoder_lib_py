@@ -1,7 +1,7 @@
 #!/usr/bin python3
 # -*- coding: utf-8 -*-
 
-# 最小全域木 クラスカル法
+# 最小全域木 クラスカル法 minimum_spanning_tree
 # 重み付き無向グラフで、それらの全ての頂点を結び連結するような木の最小のコストを求める
 # 辺の重みの小さい順にみて、連結成分が閉路にならない辺を追加していく
 # つなぐ頂点が同じ連結成分にないことをUnion Find Tree でみる
@@ -35,28 +35,38 @@ class UnionFind():
     def same(self, x, y):       #xとyが同じグループかどうか
         return self.find(x) == self.find(y)
 
-def kruskal(n, edges):
-    uf = UnionFind(n)
-    ret_weight = 0
-    ret_edges = set([])
-    ret_nodes = set([])
-    for w, u, v in edges:
-        if not uf.same(u, v):
+
+class Kruskal():
+    def __init__(self, n, edges):
+        self.n = n
+        self.all_edges = edges
+        self.weight = None
+        self.edges = None
+        self.nodes = None
+
+    def build(self):
+        self.weight = 0
+        self.edges = set([])
+        self.nodes = set([])
+        uf = UnionFind(self.n)
+        for w, u, v in self.all_edges:
+            if uf.same(u, v): continue
             uf.unite(u, v)
-            ret_weight += w
-            ret_edges.add((u, v))
-            ret_nodes.add(u)
-            ret_nodes.add(v)
-    return ret_weight
+            self.weight += w
+            self.edges.add((u, v))
+            self.nodes.add(u)
+            self.nodes.add(v)
 
 ################################
 
 n, m = map(int, input().split())
-#リストの作成
-Edges = []
+
+#辺リストの作成
+edges = set([])
 for i in range(m):
     a, b, w = map(int, input().split())
-    Edges.append((w, a-1, b-1))
-Edges.sort()
+    edges.add((w, a-1, b-1))
 
-print(kruskal(n, Edges))
+mst = Kruskal(n, edges)
+mst.build()
+print(mst.weight)

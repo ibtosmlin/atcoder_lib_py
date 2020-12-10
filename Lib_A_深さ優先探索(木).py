@@ -50,3 +50,22 @@ T.set_root(0)
 for x in T.order:   行きがけ順
 
 for x in T.order[::-1]: 帰りがけ順で
+
+
+from collections import deque
+
+P = [-1] * N # P[i] はiの親。iが根なら-1
+Q = deque([0]) # queue。根にするやつを最初に追加
+R = [] # トポロジカルソート
+while Q:
+    i = deque.popleft(Q)
+    R.append(i)
+    for a in X[i]:
+        if a == P[i]: continue
+        P[a] = i
+        X[a].remove(i) # ☆☆☆
+        deque.append(Q, a)
+
+print("X =", X) # 子リスト
+print("P =", P) # 親
+print("R =", R) # トポロジカルソート

@@ -11,6 +11,9 @@ s=[list(input()) for i in range(H)]
 # 内包表記のカウント
 cnt = sum([1 for j in A if j>>i & 1])
 
+list(map(lambda x: int(x)-1, input().split()))
+
+
 a=100
 b=0.987654321
 # 0埋めのときの出力

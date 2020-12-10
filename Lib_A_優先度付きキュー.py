@@ -7,7 +7,10 @@
 # hp キュー
 # hist フラグの履歴（一度読んだものは再度使わない場合）
 
-from heapq import heapify, heappop, heappush, heappushpop
+from heapq import heapify, heappop, heappush
+from heapq import heappushpop, heapreplace
+# heappushpop プッシュしてから最小値を取り出す
+# heapreplace 最小値を取り出してプッシュする
 
 hp = []
 heapify(hp)

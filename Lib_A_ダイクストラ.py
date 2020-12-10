@@ -11,9 +11,9 @@ from heapq import heapify, heappop, heappush, heappushpop
 INF = float('inf')
 
 class dijkstra:
-    def __init__(self, n, graph):
+    def __init__(self, n, edges):
         self.dist = [INF] * n   # 最短距離リスト
-        self.graph = graph      # 有向グラフ
+        self.edges = edges      # 有向グラフ
         self.prev = [-1] * n    # 前のノード
 
     def build(self, start):
@@ -21,16 +21,15 @@ class dijkstra:
         self.dist[start] = 0
         next_q = [(0, start)]
         heapify(next_q)
-        while len(next_q)>0:
+        while next_q:
             cd, cn = heappop(next_q)
-            if self.dist[cn] < cd:
-                continue
-            for nn, nd in self.graph[cn]:
+            if self.dist[cn] < cd: continue
+            for nn, nd in self.edges[cn]:
                 nd_ = self.dist[cn] + nd
-                if self.dist[nn] > nd_:
-                    self.dist[nn] = nd_
-                    self.prev[nn] = cn
-                    heappush(next_q, (nd_, nn))
+                if self.dist[nn] <= nd_: continue
+                self.dist[nn] = nd_
+                self.prev[nn] = cn
+                heappush(next_q, (nd_, nn))
         return self.dist
 
     def shortest_distance(self, goal):
@@ -49,17 +48,17 @@ class dijkstra:
 
 n, m, t = map(int, input().split())
 A = list(map(int,input().split()))
-graph_F = [[] for _ in range(n)]
-graph_R = [[] for _ in range(n)]    #行きと帰りを分けた（有向グラフ）場合
+edges_F = [[] for _ in range(n)]
+edges_R = [[] for _ in range(n)]    #行きと帰りを分けた（有向グラフ）場合
 #リストの作成
 for _ in range(m):
     a, b, c = map(int, input().split())
     a, b = a-1, b-1
-    graph_F[a].append((b,c))
-    graph_R[b].append((a,c))        #行きと帰りを分けた（有向グラフ）場合
+    edges_F[a].append((b,c))
+    edges_R[b].append((a,c))        #行きと帰りを分けた（有向グラフ）場合
 
-dijF = dijkstra(n, graph_F)  #クラスのインスタンス化
-dijR = dijkstra(n, graph_R)
+dijF = dijkstra(n, edges_F)  #クラスのインスタンス化
+dijR = dijkstra(n, edges_R)
 F = dijF.build(0)
 R = dijR.build(0)
 
