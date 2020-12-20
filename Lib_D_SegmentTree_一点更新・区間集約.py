@@ -106,7 +106,10 @@ class SegmentTree:
             self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
 
     def get_list(self):
-        return self.dat[self.seize:]
+        return self.dat[self.size:]
+
+    def get_elem(self, x):
+        return self.dat[x+self.size]
 
 
 n, q = map(int, input().split())

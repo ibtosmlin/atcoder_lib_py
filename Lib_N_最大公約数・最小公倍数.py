@@ -39,3 +39,26 @@ def Lcm(lt):
 A = [2,6,7,8]
 #print(Gcd(A)) [2, 2, 1, 1]
 #print(Lcm(A)) [2, 6, 42, 168]
+
+
+######################
+# 拡張ユークリッドの互除法
+######################
+    # 拡張ユークリッドの互除法
+    # ax+by=gcd となるx,yを求める
+    # x,yはマイナスになるかもしれない
+    # g=gcd,x, y
+def extgcd(a, b):
+    if b:
+        g, y, x = extgcd(b, a % b)
+        y -= (a // b)*x
+        return g, x, y
+    return a, 1, 0
+
+
+# ax+by=g
+# a=11 b=8  a//b=1  x=3  y=-4
+# a=8 b=3   a//b=2  x=-1 y=3
+# a=3 b=2   a//b=1  x=1  y=-1
+# a=2 b=1   a//b=2  x=0  y=1
+# a=1 b=0   a//b=1  x=1  y=0
