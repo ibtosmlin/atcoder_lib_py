@@ -75,5 +75,9 @@
 1. [繰り返し２乗法](./Lib_A_繰り返し２乗法.py)
 
 ## その他系
-1. [ゲーム](./Lib_G_ゲーム系.md)
-1. [XOR計算](./Lib_G_XOR.md)
+1. [numpy](./Lib_X_numpy.py)
+1. [ゲーム](./Lib_X_ゲーム系.md)
+1. [ゲームminmax](./Lib_X_ゲーム_minmax.py)
+1. [XOR計算](./Lib_X_XOR.md)
+1. [マンハッタン距離](Lib_X_マンハッタン距離.md)
+1. [スーパーノード](./Lib_X_スーパーノード系.py)
