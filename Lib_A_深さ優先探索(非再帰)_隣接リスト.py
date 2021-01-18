@@ -26,10 +26,11 @@ parents = [-1] * n  # parents[n] 親
 seen = [False] * n
 q = deque([0])
 dp[0] = 0
+seen[0] = True
 while len(q)>0:
     p = q.pop()
-    seen[p] = True
     nw = dp[p]
+    seen[p] = True
     for nxt in edges[p]:
         if seen[nxt]: continue
         q.append(nxt)

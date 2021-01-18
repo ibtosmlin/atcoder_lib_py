@@ -12,12 +12,12 @@ INF = float('inf')
 
 class dijkstra:
     def __init__(self, n, edges):
-        self.dist = [INF] * n   # 最短距離リスト
+        self.n = n              # ノード数
         self.edges = edges      # 有向グラフ
         self.prev = [-1] * n    # 前のノード
 
     def build(self, start):
-        self.dist = [INF] * n
+        self.dist = [INF] * self.n
         self.dist[start] = 0
         next_q = [(0, start)]
         heapify(next_q)

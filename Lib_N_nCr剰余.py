@@ -22,6 +22,10 @@ def nPr(n, r):
         return 0
     return g1[n] * g2[n-r] % mod
 
+def nHr(n, r):
+    return nCr(n-1+r, n-1)
+
+
 ret = nCr(4, 2)
 
 #####################################

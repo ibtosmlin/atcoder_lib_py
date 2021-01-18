@@ -68,14 +68,26 @@ class Tree():
 # a, bはdpの値, uは親, vは子
 op = lambda a, u, v: a + 1 # dpをmergeする前にする作業
 merge = lambda a, b: a * b % m # dpをmerge
-id = 1  #　mergeの単位元
+id = 1  # mergeの単位元
 #
 #######################################################
-n, m = map(int, input().split())
+n = int(input())
 T = Tree(n)
+ed = []
 for _ in range(n-1):
     a, b = map(int, input().split())
     T.add_edge(a-1, b-1)
+    ed.append([a-1, b-1])
+
+q = int(input())
+xs = {}
+for _ in range(q):
+    t, e, x = map(int, input().split())
+    v, u = ed[e-1]
+    if t == 2:
+        u, v = v, u
+    # vをから行けて、uを通らない
+    xs[(u, v)] = x
 
 T.set_root(0)
 dp = T.rerooting(op, merge, id)

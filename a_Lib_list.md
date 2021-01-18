@@ -1,5 +1,6 @@
 # AtCoder ライブラリー
 ## 入出力・文字列
+1. [入力](./Lib_0_入力.py)
 1. [入力](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_0_入力.py)
 3. [文字列変換](file:/home/ibtosm/work/zgit/atcoder_lib_py/Lib_0_文字列変換.py)
 ## リスト・辞書

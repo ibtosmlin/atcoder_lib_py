@@ -28,7 +28,7 @@
 # 右側の子のインデックス    2*i+1
 # aiの値が代入されているインデックス    i+size
 
-class SegmentTree:
+class LazySegmentTree:
     # 初期化処理
     # f     : SegmentTreeにのせるモノイド
     # idele : fに対する単位元
@@ -37,22 +37,71 @@ class SegmentTree:
         self.idele = idele                      # 単位元
         self.f = f                              # モノイド
         self.dat = [self.idele]*(self.size*2)   # 要素を単位元で初期化
+        self.lazy = [self.idele]*(self.size*2)  # 伝搬情報を単位元で初期化
+
+##
+## 伝搬される区間のインデックスを全て列挙する
+    def gindex(self, l, r):
+        lm = (l // (l & -l)) >> 1
+        rm = (r // (r & -r)) >> 1
+        while l < r:
+            if r <= rm:
+                yield r
+            if l <= lm:
+                yield l
+            l >>= 1; r >>= 1
+        while l:
+            yield l
+            l >>= 1
+
+## range
+    def update(self, l, r, x):
+#        i += self.size  # 1番下の層におけるインデックス
+#        self.dat[i] = x
+#        while i > 0:    # 層をのぼりながら値を更新
+#            i >>= 1     # 1つ上の層のインデックス(完全二分木における親)
+#            # 下の層2つの演算結果の代入(完全二分木における子同士の演算)
+#            self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
+        l += self.size  # 1番下の層におけるインデックス
+        r += self.size  # 1番下の層におけるインデックス
+        while l < r:
+            if l & 1:
+                r -= 1
+                self.lazy[r-1] = x
+                self.dat[r-1] = x
+            if l & 1:
+                self.lazy[l-1] = x
+                self.dat[l-1] = x
+                l += 1
+            l >>= 1; r >>= 1
+        for i in self.gindex(l, r):
+            self.dat[i-1] = self.f(self.dat[i*2-1], self.dat[2*i]) + self.lazy[i-1]
+
 
 ## one point
-    def update(self, i, x):
-        i += self.size  # 1番下の層におけるインデックス
-        self.dat[i] = x
-        while i > 0:    # 層をのぼりながら値を更新 indexが0になれば終了
-            i >>= 1     # 1つ上の層のインデックス(完全二分木における親)
-            # 下の層2つの演算結果の代入(完全二分木における子同士の演算)
-            self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
+#    def add(self, i, x):
+#        i += self.size  # 1番下の層におけるインデックス
+#        self.dat[i] += x
+#        while i > 0:    # 層をのぼりながら値を更新 indexが0になれば終了
+#            i >>= 1     # 1つ上の層のインデックス(完全二分木における親)
+#            # 下の層2つの演算結果の代入(完全二分木における子同士の演算)
+#            self.dat[i] = self.f(self.dat[i*2], self.dat[i*2+1])
 
-## one point
-    def add(self, i, x):
-        self.update(i, self.get_elem(i)+x)
+## propagete
+    def propagates(self, *ids):
+        for i in reversed(ids):
+            v = self.lazy[i-1]
+            if not v: continue
+            self.lazy[2*i-1] += v
+            self.dat[2*i-1] += v
+            self.lazy[2*i] += v
+            self.data[2*i] += v
+            self.lazy[i-1] = 0
+
 
 ## range
     def query(self, l, r):
+        self.propagates(*self.gindex(l, r))
         l += self.size  # 1番下の層におけるインデックス
         r += self.size  # 1番下の層におけるインデックス
         lres, rres = self.idele, self.idele # 左側の答えと右側の答えを初期化
@@ -110,14 +159,10 @@ class SegmentTree:
 
 
 n, q = map(int, input().split())
-a = list(map(int, input().split()))
-sgt = SegmentTree(n, lambda x,y : max(x, y), -float('inf'))
+a = list([1]*n)
+sgt = LazySegmentTree(n, lambda x,y : max(x, y), -float('inf'))
 sgt.init(a)
 for _ in range(q):
-    t, u, v = map(int, input().split())
-    if t == 1:
-        sgt.update(u-1, v)
-    elif t == 2:
-        print(sgt.query(u-1, v))
-    else:
-        print(min(sgt.lower_bound_index(u-1, v), n) + 1)
+    l, r, d = map(int, input().split())
+    sgt.update(l, r, d)
+    print(sgt.get_list())
